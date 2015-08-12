@@ -1,8 +1,26 @@
 $blue: #0d345d;
+$fontBody: 20;
 
 * {
-  padding: 0;
+  padding: 0;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+@mixin font-size($value) {
+  font-size: $value*$fontBody + px;
+  //font-size: ($rem) + rem;
+}
+
+body {
+  font-family: 'Pragmatica', arial;
+  @include font-size(1);
+  color: $blue;
 }
 
 header {
@@ -10,34 +28,61 @@ header {
   color: $blue;
   padding: 10px;
   text-align: center;
+  height: 30px;
+  line-height: 30px;
 }
 
-#container {
-  width: 100%;
-  display: table;
+.table {
+  display:table;
+  width:100%;
 }
 
-#row1, #row2, #row3 {
-  display: table-cell;
-  vertical-align: middle;
-  height:100%;
+.row {
+  display: table-row;
+}
+
+.cell1, .cell2, .cell3 {
+  display:table-cell;
   padding: 10px;
 }
 
-#row1 {
+.cell1 {
   width: 25%;
-  background-color:red;
   text-align: right;
 }
-
-#row2 {
+.cell2 {
   width: 15%;
-  background-color:green;
   text-align: center;
 }
-
-#row3 {
+.cell3 {
   width: 60%;
-  background-color: blue;
   text-align: left;
+}
+
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+
+span {
+  display: block;
+  @include font-size(0.8);
+}
+
+.no-platform {
+  float: right;
+}
+
+h4 {
+  font-weight: normal;
+}
+
+.desactivated {
+  color: #999;
+}
+
+.late {
+  color: #c91d30;
 }

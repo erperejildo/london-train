@@ -1,10 +1,22 @@
 <header>
-  <strong>14:00</strong>
-  London Euston to Manchester Picaddi
+  <strong>{{model.journey.scheduled}}</strong>
+  {{model.journey.origin}} to {{model.journey.destination}}
 </header>
 
-<div id="container">
-  <div id="row1">1</div>
-  <div id="row2">2</div>
-  <div id="row3">3</div>
+<div class="table" ng-style="{{gridHeight}}">
+  <div class="row" ng-repeat="stop in model.callingPoints" ng-class="{'desactivated':stop.scheduled < currentHour}">
+    <div class="cell1">
+      <strong>{{stop.scheduled}}</strong>
+      <span>{{stop.expected}}</span>
+    </div>
+    <div class="cell2"></div>
+    <div class="cell3">
+      <h4>{{stop.station}}</h4>
+      <span class="left" ng-class="{'late':stop.scheduled < stop.expected && stop.scheduled > currentHour}">9 min late</span>
+      <span class="right">
+        Platform <strong>{{stop.platform}}</strong>
+        <div class="no-platform" ng-if="stop.platform === ''">&nbsp;-</div>
+      </span>
+    </div>
+  </div>
 </div>
