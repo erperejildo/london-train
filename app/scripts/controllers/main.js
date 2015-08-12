@@ -37,6 +37,12 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
             			minutesLate = 60 + minutesLate;
 	           		}
 
+	           		// if train comes early
+	           		if (hourLate < 0) {
+	           			// on time
+           				$scope.onTime[i] = true;
+	           		}
+
 	           		if (hourLate === 0) {
 	           			hourLate = '';
 	           			if (minutesLate === 0) {

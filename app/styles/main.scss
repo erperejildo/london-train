@@ -12,10 +12,21 @@ html, body {
   height: 100%;
 }
 
+
+// MIXINS
 @mixin font-size($value) {
   font-size: $value*$fontBody + px;
   //font-size: ($rem) + rem;
 }
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+     -o-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+// END MIXINS
 
 body {
   font-family: 'Pragmatica', arial;
@@ -43,7 +54,8 @@ header {
 
 .cell1, .cell2, .cell3 {
   display:table-cell;
-  padding: 10px;
+  padding: 0px 10px;
+  vertical-align: top;
 }
 
 .cell1 {
@@ -76,8 +88,8 @@ span {
   float: right;
 }
 
-h3 {
-  font-weight: normal;
+.stop {
+  @include font-size(1.2);
 }
 
 .desactivated {
@@ -86,4 +98,18 @@ h3 {
 
 .late {
   color: #c91d30;
+}
+
+.circle-after {
+  border: 5px solid #b4cfdd;
+  @include border-radius(50%);
+  width: 25px;
+  height: 25px;
+  margin: auto;
+}
+.line-after {
+  width: 3px;
+  height: 100%;
+  background-color: #b4cfdd;
+  margin: auto;
 }
