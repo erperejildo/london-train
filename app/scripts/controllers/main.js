@@ -14,7 +14,7 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
     	var currentHour    = new Date("August 12, 2015 15:35:00");
     	$scope.currentHour = currentHour.getHours() + ':' + currentHour.getMinutes();
     	// get model
-        $http.get('model/ldb.json')
+        $http.get('scripts/model/ldb.json')
             .then(function(res) {
                 $scope.model = res.data;
                 // change the grid height if we are different stops
@@ -61,6 +61,6 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
                 }
             });
 
-        $scope.gridHeight = { 'height' : document.body.clientHeight - 50 + 'px' };
+        $scope.gridHeight = { 'height' : document.body.clientHeight - 70 + 'px' };
 
     });

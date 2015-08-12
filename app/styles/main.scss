@@ -46,6 +46,7 @@ header {
 .table {
   display:table;
   width:100%;
+  margin: 20px 0px;
 }
 
 .row {
@@ -100,16 +101,38 @@ span {
   color: #c91d30;
 }
 
-.circle-after {
+.circle {
   border: 5px solid #b4cfdd;
   @include border-radius(50%);
   width: 25px;
   height: 25px;
   margin: auto;
 }
-.line-after {
+.line {
   width: 3px;
   height: 100%;
   background-color: #b4cfdd;
   margin: auto;
+}
+
+.line-stoped {
+  .circle {
+    border: 3px solid $blue;
+    width: 20px;
+    height: 20px;
+    background-color: #c2d65f;
+  }
+  .line {
+    background-color: #c2d65f;
+    border: 3px solid $blue;
+    border-top: none;
+    border-bottom: none;
+    margin-top: -3px;
+  }
+}
+
+.train {
+  width: 40px;
+  position: absolute;
+  top: 70px;
 }
