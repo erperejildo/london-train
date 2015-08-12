@@ -17,14 +17,13 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
         $http.get('model/ldb.json')
             .then(function(res) {
                 $scope.model = res.data;
-                console.log($scope.model);
                 // change the grid height if we are different stops
                 $scope.numbersStops = { 'height' : 100 / $scope.model.callingPoints.length + '%' };
                 // minutes late for each stop
                 $scope.scheduled = new Array();
                 $scope.expected  = new Array();
                 $scope.late      = new Array();
-                $scope.atTime    = new Array();
+                $scope.onTime    = new Array();
                 for (var i = 0; i < $scope.model.callingPoints.length; i ++) {
                 	// ["15","50"]
                 	$scope.expected[i]  = $scope.model.callingPoints[i].expected.split(':');
@@ -33,23 +32,26 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
                 	var hourLate    = $scope.expected[i][0] - $scope.scheduled[i][0];
                 	var minutesLate = $scope.expected[i][1] - $scope.scheduled[i][1];
 
-                	
-
                 	if (minutesLate < 0) {
             			hourLate    = hourLate - 1;
             			minutesLate = 60 + minutesLate;
 	           		}
 
-	           		// at time
-	           		if (hourLate === 0 && minutesLate === 0) {
-	           			$scope.atTime[i] = true;
+	           		if (hourLate === 0) {
+	           			hourLate = '';
+	           			if (minutesLate === 0) {
+	           				// on time
+	           				$scope.onTime[i] = true;
+	           			}
+	           		} else {
+           				hourLate = hourLate + ' hr ';
 	           		}
-
-
-
+	           		if (minutesLate > 0) {
+           				// at time
+           				minutesLate = minutesLate + ' min';
+           			}
 
                 	$scope.late[i]  = hourLate + ' ' + minutesLate;
-                	console.log($scope.late[i]);
                 }
             });
 
