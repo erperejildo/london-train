@@ -12,7 +12,7 @@
     <div class="cell2"></div>
     <div class="cell3">
       <h4>{{stop.station}}</h4>
-      <span class="left" ng-class="{'late':stop.scheduled < stop.expected && stop.scheduled > currentHour}">9 min late</span>
+      <span class="left" ng-class="{'late':stop.scheduled < stop.expected && stop.scheduled > currentHour}" ng-hide="atTime[$index]">{{atTime[$index]}} late</span>
       <span class="right">
         Platform <strong>{{stop.platform}}</strong>
         <div class="no-platform" ng-if="stop.platform === ''">&nbsp;-</div>

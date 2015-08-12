@@ -67,6 +67,7 @@ header {
 }
 
 span {
+  margin-top: 10px;
   display: block;
   @include font-size(0.8);
 }
