@@ -1,0 +1,43 @@
+$blue: #0d345d;
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  background-color: #eee;
+  color: $blue;
+  padding: 10px;
+  text-align: center;
+}
+
+#container {
+  width: 100%;
+  display: table;
+}
+
+#row1, #row2, #row3 {
+  display: table-cell;
+  vertical-align: middle;
+  height:100%;
+  padding: 10px;
+}
+
+#row1 {
+  width: 25%;
+  background-color:red;
+  text-align: right;
+}
+
+#row2 {
+  width: 15%;
+  background-color:green;
+  text-align: center;
+}
+
+#row3 {
+  width: 60%;
+  background-color: blue;
+  text-align: left;
+}
