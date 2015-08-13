@@ -56,7 +56,6 @@ header {
 
 .cell1, .cell2, .cell3 {
   display:table-cell;
-  padding: 0px 10px;
   vertical-align: top;
 }
 
@@ -69,7 +68,12 @@ header {
   text-align: center;
 }
 .cell3 {
+  width: 58%;
   text-align: left;
+  // fix for firefox
+  span:last-child {
+    padding-right: 10px;
+  }
 }
 
 .left {
@@ -111,6 +115,7 @@ span {
 }
 .line, .line-blue {
   width: 3px;
+  display: table;
   height: 100%;
   background-color: #b4cfdd;
   margin: auto;
