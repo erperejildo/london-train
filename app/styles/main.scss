@@ -2,16 +2,13 @@ $blue: #0d345d;
 $fontBody: 20;
 
 * {
-  padding: 0;white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 0;
   margin: 0;
 }
 
 html, body {
   height: 100%;
 }
-
 
 // MIXINS
 @mixin font-size($value) {
@@ -41,12 +38,16 @@ header {
   text-align: center;
   height: 30px;
   line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .table {
   display:table;
   width:100%;
   margin: 20px 0px;
+  table-layout: fixed;
 }
 
 .row {
@@ -64,11 +65,10 @@ header {
   text-align: right;
 }
 .cell2 {
-  width: 15%;
+  width: 17%;
   text-align: center;
 }
 .cell3 {
-  width: 60%;
   text-align: left;
 }
 
@@ -107,12 +107,22 @@ span {
   width: 25px;
   height: 25px;
   margin: auto;
+  background-color: #fff;
 }
-.line {
+.line, .line-blue {
   width: 3px;
   height: 100%;
   background-color: #b4cfdd;
   margin: auto;
+}
+.line-50 {
+  height: 50% !important;
+}
+
+.row:first-child {
+  .circle:after {
+    top: 0px;
+  }
 }
 
 .line-stoped {
@@ -120,6 +130,17 @@ span {
     border: 3px solid $blue;
     width: 20px;
     height: 20px;
+    background-color: #c2d65f;
+    position: relative;
+  }
+  .circle:after {
+    content: "";
+    width: 3px;
+    height: 28px;
+    position: absolute;
+    top: -3px;
+    left: 8.5px;
+    z-index: 10;
     background-color: #c2d65f;
   }
   .line {
@@ -131,7 +152,10 @@ span {
   }
 }
 
-.train {
+#train {
   width: 40px;
   position: absolute;
+  left: 33.45%;
+  margin-left: -20px;
+  z-index: 15;
 }

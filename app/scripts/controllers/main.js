@@ -9,10 +9,10 @@
  */
 angular.module('repoWebdevForInfoDanielrodriguezeuApp')
     .controller('MainCtrl', function($scope, $http) {
-    	$scope.gridHeight = { 'height' : document.body.clientHeight - 70 + 'px' };
+    	$scope.gridHeight = { 'height' : document.body.clientHeight - 90 + 'px' };
 
-    	// hour demo for a easy test. Change for test
-    	var currentHour = new Date("August 12, 2015 15:40:00");
+    	// hour demo for a easy test. CHANGE HOUR FOR TEST
+    	var currentHour = new Date("August 13, 2015 15:40:00");
     	if (currentHour.getMinutes() < 10) {
     		var minutes = '0' + currentHour.getMinutes();
     	} else {
@@ -88,13 +88,11 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
                 // Train position
                 var rowHeight  = parseInt($scope.gridHeight.height) / $scope.model.callingPoints.length;
                 var stopHeight = rowHeight * $scope.train.stop - 6;
-                if ($scope.train.state === 'moving') {
-                	console.log('move');
+                if ($scope.train.state === 'moving' && $scope.train.stop < $scope.model.callingPoints.length - 1) {
                 	stopHeight = stopHeight + rowHeight / 2;
                 }
-            	$scope.trainPos = {
-            		'top': stopHeight + 70 + 'px',
-            		'left': '150px'
-            	};
+       			$scope.trainPos = {
+        			'top': stopHeight + 70 + 'px'
+        		};
             });
     });
