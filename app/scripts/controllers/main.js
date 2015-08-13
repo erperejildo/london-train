@@ -9,7 +9,8 @@
  */
 angular.module('repoWebdevForInfoDanielrodriguezeuApp')
     .controller('MainCtrl', function($scope, $http) {
-// there are 'On time' and 'X minutes late'
+    	$scope.gridHeight = { 'height' : document.body.clientHeight - 70 + 'px' };
+
     	// hour demo for a easy test. Change for test
     	var currentHour = new Date("August 12, 2015 15:40:00");
     	if (currentHour.getMinutes() < 10) {
@@ -71,17 +72,29 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
                 	// calculate the train position
             		var hourMinutesExpected = $scope.expected[i][0]*60 + $scope.expected[i][1];
             		if (hourMinutes == hourMinutesExpected) {
-            			console.log('parada '+i);
+            			$scope.train = {
+            				state: 'stopped',
+            				stop: i
+            			};
             		}
             		if (hourMinutes > hourMinutesExpected) {
-            			console.log('en marcha '+i);
+            			$scope.train = {
+            				state: 'moving',
+            				stop: i
+            			};
             		}
 
                 }
                 // Train position
-            	$scope.trainPos = { 'top' : 70 + 'px' };
+                var rowHeight  = parseInt($scope.gridHeight.height) / $scope.model.callingPoints.length;
+                var stopHeight = rowHeight * $scope.train.stop - 6;
+                if ($scope.train.state === 'moving') {
+                	console.log('move');
+                	stopHeight = stopHeight + rowHeight / 2;
+                }
+            	$scope.trainPos = {
+            		'top': stopHeight + 70 + 'px',
+            		'left': '150px'
+            	};
             });
-
-        $scope.gridHeight = { 'height' : document.body.clientHeight - 70 + 'px' };
-
     });
