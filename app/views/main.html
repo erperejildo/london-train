@@ -3,17 +3,16 @@
   {{model.journey.origin}} to {{model.journey.destination}}
 </header>
 
-<img class="train" src="images/train.png" />
+<img class="train" src="images/train.png" ng-style="trainPos" />
 
 <div class="table" ng-style="{{gridHeight}}">
-  <div class="row" ng-repeat="stop in model.callingPoints" ng-class="{'desactivated':stop.scheduled < currentHour}">
-
+  <div class="row" ng-repeat="stop in model.callingPoints" ng-class="{'desactivated':stop.expected < currentHour || stop.expected == currentHour}">
     <div class="cell1">
       <h3>{{stop.scheduled}}</h3>
       <span ng-class="{'late':stop.scheduled < stop.expected && stop.scheduled > currentHour}">{{stop.expected}}</span>
     </div>
 
-    <div class="cell2" ng-class="{'line-stoped':stop.scheduled < currentHour}">
+    <div class="cell2" ng-class="{'line-stoped':stop.expected < currentHour}">
       <div class="circle"></div>
       <div class="line" ng-if="model.callingPoints.length > $index + 1"></div>
     </div>

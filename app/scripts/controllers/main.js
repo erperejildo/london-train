@@ -11,9 +11,18 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
     .controller('MainCtrl', function($scope, $http) {
 // there are 'On time' and 'X minutes late'
     	// hour demo for a easy test. Change for test
-    	var currentHour    = new Date("August 12, 2015 15:35:00");
-    	$scope.currentHour = currentHour.getHours() + ':' + currentHour.getMinutes();
-    	// get model
+    	var currentHour = new Date("August 12, 2015 15:40:00");
+    	if (currentHour.getMinutes() < 10) {
+    		var minutes = '0' + currentHour.getMinutes();
+    	} else {
+    		var minutes = currentHour.getMinutes();
+    	}
+    	// 15:35
+    	$scope.currentHour = currentHour.getHours() + ':' + minutes;
+    	// ['15','35'] for get the train position
+    	var hourMinutes    = $scope.currentHour.split(':');
+    	hourMinutes        = hourMinutes[0]*60 + hourMinutes[1];
+     	// get model
         $http.get('scripts/model/ldb.json')
             .then(function(res) {
                 $scope.model = res.data;
@@ -58,7 +67,19 @@ angular.module('repoWebdevForInfoDanielrodriguezeuApp')
            			}
 
                 	$scope.late[i]  = hourLate + ' ' + minutesLate;
+
+                	// calculate the train position
+            		var hourMinutesExpected = $scope.expected[i][0]*60 + $scope.expected[i][1];
+            		if (hourMinutes == hourMinutesExpected) {
+            			console.log('parada '+i);
+            		}
+            		if (hourMinutes > hourMinutesExpected) {
+            			console.log('en marcha '+i);
+            		}
+
                 }
+                // Train position
+            	$scope.trainPos = { 'top' : 70 + 'px' };
             });
 
         $scope.gridHeight = { 'height' : document.body.clientHeight - 70 + 'px' };
