@@ -20,4 +20,4 @@ Running `grunt test` will run the unit tests with karma.
 This repository is a simple demo of a London train control with AngularJS.<br />
 You can see the map train (stops, hours and if the train comes late).<br />
 Of course, you can change the model and test the app with other city (or call an API REST for get the model).<br />
-Url: http://danielrodriguez.eu/lodon-train/#/
+Url: http://rodriguezdaniel.com/lodon-train/#/
